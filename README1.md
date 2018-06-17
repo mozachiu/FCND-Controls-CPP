@@ -96,7 +96,7 @@ Ensure that in each scenario the drone looks stable and performs the required ta
 
 #### Scenario 1 – Intro ####
 <p align="center">
-<img src="images/Scenario1.PNG" width="800"/>
+<img src="images/FCND_S1.png" width="800"/>
 </p>
 
 #### Scenario 2 – Attitude Control ####
