@@ -20,7 +20,7 @@ momentCmd = VI * kpPQR * (pqrCmd - pqr);
 
 - changes are reflected in [RollPitchControl](src/QuadControl.cpp#L141-L161)
 <p align="center">
-<img src="images/FCND02.png" width="200"/>
+<img src="images/FCND02.png" width="400"/>
 </p>
 
 ```
