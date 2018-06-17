@@ -33,7 +33,7 @@ pqrCmd.y = (R22 * bc_dot.x - R12 * bc_dot.y) / R33;
 ### Implement altitude controller in C++. ###
 #### The controller should use both the down position and the down velocity to command thrust. Ensure that the output value is indeed thrust (the drone's mass needs to be accounted for) and that the thrust includes the non-linear effects from non-zero roll/pitch angles.Additionally, the C++ altitude controller should contain an integrator to handle the weight non-idealities presented in scenario 4. ####
 
-- Compute integration part. "z_diff" is the distance between desired vertical position and current vertical position.
+- Compute the integration part. "z_diff" is the distance between desired vertical position and current vertical position.
 ```
 integratedAltitudeError += z_diff * dt;
 
