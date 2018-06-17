@@ -9,7 +9,9 @@ In the real world the flight controller is usually implemented in C or C++. So i
 ### Implemented body rate control in C++. ###
 #### The controller should be a proportional controller on body rates to commanded moments. The controller should take into account the moments of inertia of the drone when calculating the commanded moments. ####
 
-- changes are reflected in [BodyRateControl](src/QuadControl.cpp#L113)
+- Translate the commanded roll, pitch and yaw into desired rotational acceleration
+```
+momentCmd = VI * kpPQR * (pqrCmd - pqr);
 ```
 - Body rate controller collects the commanded roll, pitch and yaw.
 - These are translated into desired rotational acceleration along the axis in the body frame(momentCmd).
