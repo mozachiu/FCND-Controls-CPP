@@ -38,7 +38,7 @@ pqrCmd.y = (R22 * bc_dot.x - R12 * bc_dot.y) / R33;
 integratedAltitudeError += z_diff * dt;
 
 ```
-- Compute accelZCmd: feed-forward vertical acceleration in NED [m/s2]. "z_diff_dot" is the difference between desired vertical velocity and current vertical velocity.
+- Compute feed-forward vertical acceleration "accelZCmd". "z_diff_dot" is the difference between desired vertical velocity and current vertical velocity.
 ```
 accelZCmd += KiPosZ * integratedAltitudeError + kpVelZ * z_diff_dot;
 
