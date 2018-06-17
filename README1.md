@@ -79,22 +79,15 @@ yawRateCmd = kpYaw * fmodf(float(yawCmd - yaw), 2.*F_PI);
 ### Implement calculating the motor commands given commanded thrust and moments in C++. ###
 #### The thrust and moments should be converted to the appropriate 4 different desired thrust forces for the moments. Ensure that the dimensions of the drone are properly accounted for when calculating thrust from moments. ####
 
-- changes are reflected in [GenerateMotorCommands](src/QuadControl.cpp#L71-L90)
+- L : The arm length parameter L.kappa : the drag/thrust ratio kappa.
+- The l is a distance between x-axis and propeller location.
+- Using the following equations, we can get values of F1, F2, F3, and F4.
+
 ```
-- Purpose is to calculate each motor command thrust from commanded collective thrust and commanded moment
-- The constants k_m and k_f are not given. Instead, the ration between them, kappa, is given.
-- The distance L is the distance from the center of the quad to one of the rotors.
-- Based on the input from the controller we can set the individual motor thrust commands.
-- F1, F2, F3, F4 for individual thurst command for the front (left,right) and rear (left,right) motors.
-- The l is a distance between x-axis and propeller location
-- l is equal to half of the distance between neighboring propellers at 45° relative to each axis:
-- Formulate the following 
-  Ft = collThrustCmd;         // F1+F2+F3+F4
-  Fp = momentCmd.x / l;       // F1-F2+F3-F4
-  Fq = momentCmd.y / l;       // F1+F2-F3-F4
-  Fr = momentCmd.z / kappa;   // F1-F2-F3+F4
-- Using above equations, we find individual values of F1, F2, F3, and F4.
-- Finally we clip them to min and max values and then pass these clipped values to the motors.
+  Ft = F1+F2+F3+F4
+  Fp = F1-F2+F3-F4
+  Fq = F1+F2-F3-F4
+  Fr = F1-F2-F3+F4
 ```
 
 ## Flight Evaluation ##
