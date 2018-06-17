@@ -26,22 +26,30 @@ momentCmd = VI * kpPQR * (pqrCmd - pqr);
 ```
 - pqrCmd.x = (R21 * bc_dot.x - R11 * bc_dot.y) / R33;
 - pqrCmd.y = (R22 * bc_dot.x - R12 * bc_dot.y) / R33;
-- Based on a desired global lateral acceleration and desired collective thrust
 
 ```
+- Based on a desired global lateral acceleration and desired collective thrust.
 
 ### Implement altitude controller in C++. ###
 #### The controller should use both the down position and the down velocity to command thrust. Ensure that the output value is indeed thrust (the drone's mass needs to be accounted for) and that the thrust includes the non-linear effects from non-zero roll/pitch angles.Additionally, the C++ altitude controller should contain an integrator to handle the weight non-idealities presented in scenario 4. ####
 
-- changes are reflected in [AltitudeControl](src/QuadControl.cpp#L189-L200)
+- Compute integration part. "z_diff" is the distance between desired vertical position and current vertical position.
 ```
-- Purpose is to calculate desired quad thrust baed on comments listed in the code.
-- Based on altitude and vertical velocity (actual, setpoint) and vertical acceleration feed-forward
-- Ensure z velocity command is within limits
-- Then we compute Error integration part of the PID
-- Determine desired acceleration, vertical acceleration in body frame and
-- Finally compute trust
+- integratedAltitudeError += z_diff * dt;
+
 ```
+- Compute accelZCmd: feed-forward vertical acceleration in NED [m/s2]. "z_diff_dot" is the difference between desired vertical velocity and current vertical velocity.
+```
+- accelZCmd += KiPosZ * integratedAltitudeError + kpVelZ * z_diff_dot;
+
+```
+
+- Finally compute the collective thrust command 
+```
+- thrust = mass * ((float)CONST_GRAVITY - accelZCmd) / (float)R(2, 2);
+
+```
+
 
 ### Implement lateral position control in C++. ###
 #### The controller should use the local NE position and velocity to generate a commanded local acceleration. ####
