@@ -24,8 +24,8 @@ momentCmd = VI * kpPQR * (pqrCmd - pqr);
 </p>
 
 ```
-- pqrCmd.x = (R21 * bc_dot.x - R11 * bc_dot.y) / R33;
-- pqrCmd.y = (R22 * bc_dot.x - R12 * bc_dot.y) / R33;
+pqrCmd.x = (R21 * bc_dot.x - R11 * bc_dot.y) / R33;
+pqrCmd.y = (R22 * bc_dot.x - R12 * bc_dot.y) / R33;
 
 ```
 - Based on a desired global lateral acceleration and desired collective thrust.
@@ -35,18 +35,18 @@ momentCmd = VI * kpPQR * (pqrCmd - pqr);
 
 - Compute integration part. "z_diff" is the distance between desired vertical position and current vertical position.
 ```
-- integratedAltitudeError += z_diff * dt;
+integratedAltitudeError += z_diff * dt;
 
 ```
 - Compute accelZCmd: feed-forward vertical acceleration in NED [m/s2]. "z_diff_dot" is the difference between desired vertical velocity and current vertical velocity.
 ```
-- accelZCmd += KiPosZ * integratedAltitudeError + kpVelZ * z_diff_dot;
+accelZCmd += KiPosZ * integratedAltitudeError + kpVelZ * z_diff_dot;
 
 ```
 
 - Finally compute the collective thrust command 
 ```
-- thrust = mass * ((float)CONST_GRAVITY - accelZCmd) / (float)R(2, 2);
+thrust = mass * ((float)CONST_GRAVITY - accelZCmd) / (float)R(2, 2);
 
 ```
 
@@ -58,12 +58,12 @@ momentCmd = VI * kpPQR * (pqrCmd - pqr);
 - Compute desired velocity as below. "pos_Diff"  is the distance between desired  position and current position.
 ```
 
-- velCmd += kpPosXY * pos_Diff;
+velCmd += kpPosXY * pos_Diff;
 
 ```
 - Compute the commanded local acceleration as below. "velDiff_dot" is the difference between desired velocity and current velocity.
 ```
-- accelCmd += kpVelXY * velDiff_dot;
+accelCmd += kpVelXY * velDiff_dot;
 
 ```
 - Limit the maximum horizontal velocity and acceleration to maxSpeedXY and maxAccelXY
