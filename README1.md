@@ -20,7 +20,7 @@ momentCmd = VI * kpPQR * (pqrCmd - pqr);
 
 - changes are reflected in [RollPitchControl](src/QuadControl.cpp#L141-L161)
 <p align="center">
-<img src="images/FCND01.PNG" width="800"/>
+<img src="images/FCND01.png" width="800"/>
 </p>
 ```
 - Purpose is to calculate a desired pitch and roll rates 
