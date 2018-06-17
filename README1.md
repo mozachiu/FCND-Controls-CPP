@@ -19,6 +19,9 @@ momentCmd = VI * kpPQR * (pqrCmd - pqr);
 #### The controller should use the acceleration and thrust commands, in addition to the vehicle attitude to output a body rate command. The controller should account for the non-linear transformation from local accelerations to body rates. Note that the drone's mass should be accounted for when calculating the target angles. ####
 
 - changes are reflected in [RollPitchControl](src/QuadControl.cpp#L141-L161)
+<p align="center">
+<img src="images/FCND01.png" width="800"/>
+</p>
 
 ```
 - Purpose is to calculate a desired pitch and roll rates 
