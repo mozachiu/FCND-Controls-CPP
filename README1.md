@@ -9,18 +9,11 @@ In the real world the flight controller is usually implemented in C or C++. So i
 ### Implemented body rate control in C++. ###
 #### The controller should be a proportional controller on body rates to commanded moments. The controller should take into account the moments of inertia of the drone when calculating the commanded moments. ####
 
-- Translate the commanded roll, pitch and yaw into desired rotational acceleration
+- Translate the commanded roll, pitch and yaw into desired rotational acceleration with proportional controller(pqrCmd - pqr).
 ```
 momentCmd = VI * kpPQR * (pqrCmd - pqr);
 ```
-- Body rate controller collects the commanded roll, pitch and yaw.
-- These are translated into desired rotational acceleration along the axis in the body frame(momentCmd).
-- Calculation:  momentCmd = I * kpPQR * (pqrCmd - pqr);
-- V3F structure is used to store moments of inertia in every asis (I)
-- kpPQR is a V3F used to store proportional gains on angular velocity on all axes
-- Simple proportional controller with error (pqrCmd - pqr) 
-- error indicates desired body rates [rad/s](pqrCmd) – current or estimated body rates [rad/s](pqr)
-```    
+
 
 ### Implement roll pitch control in C++. ###
 #### The controller should use the acceleration and thrust commands, in addition to the vehicle attitude to output a body rate command. The controller should account for the non-linear transformation from local accelerations to body rates. Note that the drone's mass should be accounted for when calculating the target angles. ####
