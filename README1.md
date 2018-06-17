@@ -97,14 +97,14 @@ Ensure that in each scenario the drone looks stable and performs the required ta
 #### Scenario 1 – Intro ####
 - PASS: ABS(Quad.PosFollowErr) was less than 0.500000 for at least 0.800000 seconds
 <p align="center">
-<img src="images/FCND_S1.png" width="800"/>
+<img src="images/FCND_S1.png" width="400"/>
 </p>
 
 #### Scenario 2 – Attitude Control ####
 - PASS: ABS(Quad.Roll) was less than 0.025000 for at least 0.750000 seconds
 - PASS: ABS(Quad.Omega.X) was less than 2.500000 for at least 0.750000 seconds
 <p align="center">
-<img src="images/FCND_S2.png" width="800"/>
+<img src="images/FCND_S2.png" width="400"/>
 </p>
 
 #### Scenario 3 – Position Control ####
@@ -112,7 +112,7 @@ Ensure that in each scenario the drone looks stable and performs the required ta
 - PASS: ABS(Quad2.Pos.X) was less than 0.100000 for at least 1.250000 seconds
 - PASS: ABS(Quad2.Yaw) was less than 0.100000 for at least 1.000000 seconds
 <p align="center">
-<img src="images/FCND_S3.png" width="800"/>
+<img src="images/FCND_S3.png" width="400"/>
 </p>
 
 #### Scenario 4 – Nonidealities ####
@@ -120,10 +120,11 @@ Ensure that in each scenario the drone looks stable and performs the required ta
 - PASS: ABS(Quad2.PosFollowErr) was less than 0.100000 for at least 1.500000 seconds
 - PASS: ABS(Quad3.PosFollowErr) was less than 0.100000 for at least 1.500000 seconds
 <p align="center">
-<img src="images/FCND_S4.png" width="800"/>
+<img src="images/FCND_S4.png" width="400"/>
 </p>
 
 #### Scenario 5 – Trajectory Follow ####
+- PASS: ABS(Quad2.PosFollowErr) was less than 0.250000 for at least 3.000000 seconds
 <p align="center">
-<img src="images/FCND_S5.png" width="800"/>
+<img src="images/FCND_S5.png" width="400"/>
 </p>
