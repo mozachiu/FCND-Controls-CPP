@@ -54,14 +54,19 @@ momentCmd = VI * kpPQR * (pqrCmd - pqr);
 ### Implement lateral position control in C++. ###
 #### The controller should use the local NE position and velocity to generate a commanded local acceleration. ####
 
-- changes are reflected in [LateralPositionControl](src/QuadControl.cpp#L234-L247)
+- Initialize the returned desired acceleration to the feed-forward value.
+- Compute desired velocity as below. "pos_Diff"  is the distance between desired  position and current position.
 ```
-- Purpose is to calculate the desired acceleration in the global frame 
-- Based on desired lateral position/velocity/acceleration and current pose parameters
-- Ensure Contrain desired velocity
-- Determine PD controller + feedforward and
-- Finally constrain desired acceleration
+
+- velCmd += kpPosXY * pos_Diff;
+
 ```
+- Compute the commanded local acceleration as below. "velDiff_dot" is the difference between desired velocity and current velocity.
+```
+- accelCmd += kpVelXY * velDiff_dot;
+
+```
+- Limit the maximum horizontal velocity and acceleration to maxSpeedXY and maxAccelXY
 
 ### Implement yaw control in C++. ###
 #### The controller can be a linear/proportional heading controller to yaw rate commands (non-linear transformation not required). ####
