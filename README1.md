@@ -95,13 +95,16 @@ yawRateCmd = kpYaw * fmodf(float(yawCmd - yaw), 2.*F_PI);
 Ensure that in each scenario the drone looks stable and performs the required task. Specifically check that the student's controller is able to handle the non-linearities of scenario 4 (all three drones in the scenario should be able to perform the required task with the same control gains used). 
 
 #### Scenario 1 – Intro ####
+- PASS: ABS(Quad.PosFollowErr) was less than 0.500000 for at least 0.800000 seconds
 <p align="center">
 <img src="images/FCND_S1.png" width="800"/>
 </p>
 
 #### Scenario 2 – Attitude Control ####
+- PASS: ABS(Quad.Roll) was less than 0.025000 for at least 0.750000 seconds
+- PASS: ABS(Quad.Omega.X) was less than 2.500000 for at least 0.750000 seconds
 <p align="center">
-<img src="images/Scenario2.PNG" width="800"/>
+<img src="images/SFCND_S1.png" width="800"/>
 </p>
 
 #### Scenario 3 – Position Control ####
