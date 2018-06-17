@@ -18,20 +18,16 @@ momentCmd = VI * kpPQR * (pqrCmd - pqr);
 ### Implement roll pitch control in C++. ###
 #### The controller should use the acceleration and thrust commands, in addition to the vehicle attitude to output a body rate command. The controller should account for the non-linear transformation from local accelerations to body rates. Note that the drone's mass should be accounted for when calculating the target angles. ####
 
-- changes are reflected in [RollPitchControl](src/QuadControl.cpp#L141-L161)
+- The equation below is used to calcuate body rate command in roll pitch controller.
 <p align="center">
 <img src="images/FCND02.png" width="400"/>
 </p>
 
 ```
-- Purpose is to calculate a desired pitch and roll rates 
-- Based on a desired global lateral acceleration, the current attitude, and desired collective thrust
-- First we obtain current tilt from the rotation matrix R.
-- Then we compute the desired tilt by normalizing the desired acceleration by the thrust. 
-- Prevent drone flipping using max-min constrain
-- Determines the desired roll and pitch rate in the world frame
-- Finally, in order to output the desired roll and pitch rate in the body frame
-- Tuning kpBank and kpPQR(again until the drone flies more or less stable upward)
+- pqrCmd.x = (R21 * bc_dot.x - R11 * bc_dot.y) / R33;
+- pqrCmd.y = (R22 * bc_dot.x - R12 * bc_dot.y) / R33;
+- Based on a desired global lateral acceleration and desired collective thrust
+
 ```
 
 ### Implement altitude controller in C++. ###
